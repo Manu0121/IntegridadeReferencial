@@ -1,0 +1,154 @@
+CREATE DATABASE jornal;
+usejornal;
+
+CREATE TABLE categoria (
+codcate int PRIMARY KEY auto_increment,
+categoria varchar(100)
+);
+
+CREATE TABLE turma (
+codturma int PRIMARY KEY auto_increment,
+turma varchar(50)
+);
+
+CREATE TABLE dia (
+dia int PRIMARY KEY
+);
+
+CREATE TABLE mes (
+mes int PRIMARY KEY
+);
+
+CREATE TABLE ano (
+ano int PRIMARY KEY
+);
+
+CREATE TABLE redator (
+codred int PRIMARY KEY auto_increment,
+nome varchar(100),
+sobrenome varchar(100),
+email varchar(100),
+ddd varchar(3),
+telefone varchar(50),
+codturma int,
+dia int,
+mes int,
+ano int,
+FOREIGN KEY(dia) REFERENCES dia (dia) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(mes) REFERENCES mes (mes) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(ano) REFERENCES ano (ano) ON DELETE CASCADE ON UPDATE CASCADE,	
+FOREIGN KEY(codturma) REFERENCES turma (codturma) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE noticia (
+codnoti int PRIMARY KEY auto_increment,
+noticia varchar(1000),
+titulo varchar(100),
+codred int,
+codcate int,
+ano int,
+dia int,
+mes int,
+FOREIGN KEY(codred) REFERENCES redator (codred) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(dia) REFERENCES dia (dia) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(mes) REFERENCES mes (mes) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(ano) REFERENCES ano (ano) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(codcate) REFERENCES categoria (codcate) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+insert into categoria('categoria') values
+('Economia'),
+('Entretenimento'),
+('Avisos'),
+('Novidades'),
+('Eventos'),
+('Artigo de Opinião');
+
+insert into turma(turma) values
+('1C'),
+('2C'),
+('3C'),
+('2D');
+
+insert into dia(dia) values
+('1'),
+('2'),
+('3'),
+('4'),
+('5'),
+('6'),
+('7'),
+('8'),
+('9'),
+('10'),
+('11'),
+('12'),
+('13'),
+('14'),
+('15'),
+('16'),
+('17'),
+('18'),
+('19'),
+('20'),
+('21'),
+('22'),
+('23'),
+('24'),
+('24'),
+('26'),
+('27'),
+('28'),
+('29'),
+('30'),
+('31');
+
+
+insert into mes(mes) values
+('1'),
+('2'),
+('3'),
+('4'),
+('5'),
+('6'),
+('7'),
+('8'),
+('9'),
+('10'),
+('11'),
+('12');
+
+insert into ano(ano) values
+('2001'),
+('2002'),
+('2003'),
+('2004'),
+('2005'),
+('2006'),
+('2007'),
+('2008'),
+('2009'),
+('2010'),
+('2011'),
+('2012'),
+('2013'),
+('2014'),
+('2015'),
+('2016'),
+('2017'),
+('2018'),
+('2019'),
+('2020');
+
+insert into redator('nome','sobrenome','email','ddd','telefone','codturma','dia','mes','ano') values
+('Percy','Jackson','pj@gmail.com','011','930317512','1','18','8','2002'),
+('Juliette','Ferrars','juli@gmail.com','011','125463289','3','5','12','2003'),
+('Annabeth','Chase','anniechase@gmail.com','011','35874125','1','7','5','2002'),
+('Aaron','Warner','warner@gmail.com','011','125896457','1','21','1','2001'),
+('Rhysand','da Silva','rhysinho@gmail.com','011','326548971','1','18','08','2002');
+
+insert into noticia('titulo', 'noticia','categoria', 'codred') values
+('Equipe de Natacao vence a competicao','blalalallalalalalaaaaaaaalalallalalaldjkbcjcjavcjwbwhgfhaqwevf','Novidades','1'),
+('A diretoria indica:','jabckqwbjvkqebkj\wbkjzsbkjgzbkrvjzrbvkjbzrvkjbkrjvbrk','Avisos','3'),
+('Top alunes mais bonitos','cbdjvkjaebvkjwblabvç\hbvljsbhvlwebveb','Entretenimento','5');
